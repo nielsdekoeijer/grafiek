@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/niels/repository/personal/grafiek/__build",
+  "command": "/usr/bin/clang++ -DBOOST_ALL_NO_LIB -DBOOST_SYSTEM_DYN_LINK -I/home/niels/repository/personal/grafiek/src -Weverything -O3 -Wno-pre-c++20-compat-pedantic -Wno-c++98-compat -Wno-padded -std=gnu++20 -o CMakeFiles/grafiek.dir/src/test.cpp.o -c /home/niels/repository/personal/grafiek/src/test.cpp",
+  "file": "/home/niels/repository/personal/grafiek/src/test.cpp"
+},
+{
+  "directory": "/home/niels/repository/personal/grafiek/__build",
+  "command": "/usr/bin/clang++ -DBOOST_ALL_NO_LIB -DBOOST_SYSTEM_DYN_LINK -I/home/niels/repository/personal/grafiek/src -Weverything -O3 -Wno-pre-c++20-compat-pedantic -Wno-c++98-compat -Wno-padded -std=gnu++20 -o CMakeFiles/grafiek.dir/src/canvas/font.cpp.o -c /home/niels/repository/personal/grafiek/src/canvas/font.cpp",
+  "file": "/home/niels/repository/personal/grafiek/src/canvas/font.cpp"
+},
+{
+  "directory": "/home/niels/repository/personal/grafiek/__build",
+  "command": "/usr/bin/clang++ -DBOOST_ALL_NO_LIB -DBOOST_SYSTEM_DYN_LINK -I/home/niels/repository/personal/grafiek/src -Weverything -O3 -Wno-pre-c++20-compat-pedantic -Wno-c++98-compat -Wno-padded -std=gnu++20 -o CMakeFiles/grafiek.dir/src/canvas/draw.cpp.o -c /home/niels/repository/personal/grafiek/src/canvas/draw.cpp",
+  "file": "/home/niels/repository/personal/grafiek/src/canvas/draw.cpp"
+},
+{
+  "directory": "/home/niels/repository/personal/grafiek/__build",
+  "command": "/usr/bin/clang++ -DBOOST_ALL_NO_LIB -DBOOST_SYSTEM_DYN_LINK -I/home/niels/repository/personal/grafiek/src -Weverything -O3 -Wno-pre-c++20-compat-pedantic -Wno-c++98-compat -Wno-padded -std=gnu++20 -o CMakeFiles/grafiek.dir/src/color/hex.cpp.o -c /home/niels/repository/personal/grafiek/src/color/hex.cpp",
+  "file": "/home/niels/repository/personal/grafiek/src/color/hex.cpp"
+}
+]
