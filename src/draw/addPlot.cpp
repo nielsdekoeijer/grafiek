@@ -20,14 +20,17 @@ void addElement(boost::property_tree::ptree& svg, const Plot& element)
     addSize(svgPlot, element.xplot, element.yplot, wplot, hplot);
     addBackground(svgPlot, element.bgplot);
 
+    /* ticks */
     std::size_t pxTickDivision = 50;
     std::size_t tickPrecision = 2;
-    std::size_t ynticks = std::size_t(float(hplot) / float(pxTickDivision));
+
+    /* long ticks */
     std::size_t xnticks = std::size_t(float(wplot) / float(pxTickDivision));
     for (std::size_t i = 0; i <= xnticks; i++) {
         auto x = denormalize<float>(float(i) / float(xnticks), 0, float(wplot));
         auto y = hplot;
 
+        /* every other tick we do a long one */
         if (i % 2 == 0) {
             boost::property_tree::ptree ticklongline;
             ticklongline.put("<xmlattr>.x1", x);
@@ -38,10 +41,13 @@ void addElement(boost::property_tree::ptree& svg, const Plot& element)
             svgPlot.add_child("line", ticklongline);
         }
     }
+
+    std::size_t ynticks = std::size_t(float(hplot) / float(pxTickDivision));
     for (std::size_t i = 0; i <= ynticks; i++) {
         auto x = 0.0f;
-        auto y = float(hplot) + float(element.yplot) - denormalize<float>(float(i) / float(ynticks), 0, float(hplot));
+        auto y = float(hplot) - denormalize<float>(float(i) / float(ynticks), 0, float(hplot));
 
+        /* every other tick we do a long one */
         if (i % 2 == 0) {
             boost::property_tree::ptree ticklongline;
             ticklongline.put("<xmlattr>.x1", x);
@@ -118,7 +124,7 @@ void addElement(boost::property_tree::ptree& svg, const Plot& element)
 
         boost::property_tree::ptree ticklabel;
         std::stringstream ss;
-        ss << std::fixed << std::setprecision(tickPrecision)
+        ss << std::fixed << std::scientific << std::setprecision(tickPrecision)
            << denormalize<float>(float(i) / xnticks, xmin, xmax);
         ticklabel.put("", ss.str());
         ticklabel.put("<xmlattr>.font-family", "Arial");
@@ -132,7 +138,7 @@ void addElement(boost::property_tree::ptree& svg, const Plot& element)
     /* yticks */
     for (std::size_t i = 0; i <= ynticks; i++) {
         auto x = 0;
-        auto y = hplot + element.yplot - denormalize<float>(float(i) / float(ynticks), 0, hplot);
+        auto y = hplot - denormalize<float>(float(i) / float(ynticks), 0, hplot);
         boost::property_tree::ptree ticklongline;
         ticklongline.put("<xmlattr>.x1", x);
         ticklongline.put("<xmlattr>.x2", x + 5);
@@ -143,14 +149,14 @@ void addElement(boost::property_tree::ptree& svg, const Plot& element)
 
         boost::property_tree::ptree ticklabel;
         std::stringstream ss;
-        ss << std::fixed << std::setprecision(tickPrecision)
+        ss << std::fixed << std::scientific << std::setprecision(tickPrecision)
            << denormalize<float>(float(i) / ynticks, ymin, ymax);
         ticklabel.put("", ss.str());
         ticklabel.put("<xmlattr>.font-family", "Arial");
         ticklabel.put("<xmlattr>.font-size", 8);
         ticklabel.put("<xmlattr>.dominant-baseline", "middle");
-        ticklabel.put("<xmlattr>.x", float(x) + float(element.xplot) / 2.0f + 10.0f);
-        ticklabel.put("<xmlattr>.y", y);
+        ticklabel.put("<xmlattr>.x", x + element.xplot - 5 * element.xplot / 12);
+        ticklabel.put("<xmlattr>.y", y + element.yplot);
         svgBorder.add_child("text", ticklabel);
     }
 
@@ -173,7 +179,7 @@ void addElement(boost::property_tree::ptree& svg, const Plot& element)
     xlabel.put("<xmlattr>.text-anchor", "middle");
     xlabel.put("<xmlattr>.dominant-baseline", "middle");
     xlabel.put("<xmlattr>.x", element.w / 2);
-    xlabel.put("<xmlattr>.y", hplot + element.yplot + element.yplot / 2);
+    xlabel.put("<xmlattr>.y", hplot + element.yplot + 2 * element.yplot / 3);
     svgBorder.add_child("text", xlabel);
 
     boost::property_tree::ptree ylabel;
@@ -182,7 +188,7 @@ void addElement(boost::property_tree::ptree& svg, const Plot& element)
     ylabel.put("<xmlattr>.font-size", 12);
     ylabel.put("<xmlattr>.text-anchor", "middle");
     ylabel.put("<xmlattr>.dominant-baseline", "middle");
-    auto xylabel = element.xplot / 2;
+    auto xylabel = element.xplot / 4;
     auto yylabel = element.yplot + hplot / 2;
     ylabel.put("<xmlattr>.x", xylabel);
     ylabel.put("<xmlattr>.y", yylabel);

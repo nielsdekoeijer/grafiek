@@ -15,8 +15,8 @@ struct Plot {
   std::vector<float> ydata = {};
   float linewidth = 1.0;
   float borderwidth = 1.0;
-  std::size_t xplot = 60;
-  std::size_t yplot = 40;
+  std::size_t xplot = 80;
+  std::size_t yplot = 50;
   std::string xlabel = "[empty]";
   std::string ylabel = "[empty]";
   std::string title = "[empty]";
