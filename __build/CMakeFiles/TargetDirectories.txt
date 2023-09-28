@@ -1,3 +1,0 @@
-/home/niels/repository/personal/grafiek/__build/CMakeFiles/grafiek.dir
-/home/niels/repository/personal/grafiek/__build/CMakeFiles/edit_cache.dir
-/home/niels/repository/personal/grafiek/__build/CMakeFiles/rebuild_cache.dir
